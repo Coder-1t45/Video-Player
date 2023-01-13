@@ -1,0 +1,76 @@
+{
+  "name": "videplayer",
+  "productName": "Video Player",
+  "version": "1.0.0",
+  "icon":"icon.ico",
+  "description": "video player",
+  "main": "electron.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "tsc && electron electron.js D:\\Desktop\\video.mp4",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Coder-1t45",
+    "email": "itaylayzer@gmail.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon":"icon.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "electron": "22.0.1",
+    "electron-builder": "^23.6.0"
+  },
+  "build":{
+    "appId": "com.1t45.videplayer",
+    "productName":"Video Player",
+    "target":"NSIS",
+    "directory":{
+      "output":"build"
+    },
+    "nsis":{
+      "allowToChangeInstallationDirectory": true,
+      "oneClick":false
+    }
+  }
+}

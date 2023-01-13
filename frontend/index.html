@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="player.css" />
+    <link rel="icon" href="icon.png" />
+    <script type="module" src="player.js"></script>
+    <title>Video Player</title>
+</head>
+
+<body>
+    <div class="videobehind">
+        <video id="videoElement" src=""></video>
+    </div>
+    <main id="main">
+        <div class="header">
+            <div class="start">
+                <!-- <button><p style="transform:translateY(4px); rotate:180deg; padding:0; margin:0;">→</p></button> -->
+                <h1 id="titleElement" style="direction:auto;"></h1>
+            </div>
+            <div class="end">
+                <button buttontip tooltip="mute" tooltip="audio" id="audioButton">
+                    <svg style="filter: invert(62%) sepia(28%) saturate(4730%) hue-rotate(174deg) brightness(99%) contrast(105%);"
+                        height="35" width="35">
+                        <path
+                            d="M8,21 L12,21 L17,26 L17,10 L12,15 L8,15 L8,21 Z M19,14 L19,22 C20.48,21.32 21.5,19.77 21.5,18 C21.5,16.26 20.48,14.74 19,14 ZM19,11.29 C21.89,12.15 24,14.83 24,18 C24,21.17 21.89,23.85 19,24.71 L19,26.77 C23.01,25.86 26,22.28 26,18 C26,13.72 23.01,10.14 19,9.23 L19,11.29 Z" />
+                    </svg>
+                    <progress value="100" max="100"></progress>
+                </button>
+                <button buttontip tooltip="subtitles" id="subtitlesButton">
+                    <svg height="35" width="35">
+                        <path
+                            d="M11,11 C9.9,11 9,11.9 9,13 L9,23 C9,24.1 9.9,25 11,25 L25,25 C26.1,25 27,24.1 27,23 L27,13 C27,11.9 26.1,11 25,11 L11,11 Z M11,17 L14,17 L14,19 L11,19 L11,17 L11,17 Z M20,23 L11,23 L11,21 L20,21 L20,23 L20,23 Z M25,23 L22,23 L22,21 L25,21 L25,23 L25,23 Z M25,19 L16,19 L16,17 L25,17 L25,19 L25,19 Z" />
+                    </svg>
+                </button>
+                <input type="file" id="subtitlesInput" style="display: none" accept=".srt" />
+                <!-- <button buttontip tooltip="playlist">ıllı</button> -->
+            </div>
+        </div>
+        <div id="emptyScreen" class="empty"></div>
+        <div class="controls">
+            <div class="start">
+                <button id="repeatElement" tooltip="repeat">⇄</button>
+                <!--❚❚-->
+                <button id="playElement" tooltip="play">
+                    <p>▷</p>
+                </button>
+                <button id="backwardElement" tooltip="backward">
+                    <p style="rotate: 180deg">≫</p>
+                </button>
+                <button id="forwardElement" tooltip="forward">≫</button>
+                <p time style="margin-right: 15px" id="s_currentTime">00:00:00</p>
+            </div>
+            <input id="progressElement" value="1" max="10000" type="range" />
+            <div class="end">
+                <p time id="s_duration" style="margin-left: 15px">00:00:00</p>
+                <!-- 🔉🔈🔇 -->
+                <!-- minimuzed ▣, cinema ◫ ,fullscreen ▨ -->
+                <button id="screenElement" tooltip="fullscreen">▨</button>
+            </div>
+        </div>
+    </main>
+    <div class="videobehind">
+        <div class="subt">
+            <div style="flex-grow: 1; align-items: flex-start"></div>
+            <p id="subtitlesElement" style="visibility: hidden; direction:ltr;"></p>
+            <div style="flex-grow: 1; align-items: flex-end"></div>
+        </div>
+    </div>
+</body>
+
+</html>
