@@ -1,0 +1,1 @@
+{"volume":70,"muted":false,"videos":[{"path":"D://Desktop//%D7%A1%D7%A8%D7%98.mp4","subs_dir":"rtl","time":2967.53196}]}

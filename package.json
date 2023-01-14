@@ -1,17 +1,13 @@
 {
   "name": "videplayer",
   "productName": "Video Player",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "icon":"icon.ico",
   "description": "video player",
   "main": "electron.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "tsc && electron electron.js D:\\Desktop\\video.mp4",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
-    "dist": "electron-builder"
+    "dev": "tsc && electron electron.js D:\\Desktop\\סרט.mp4",
+    "build": "electron-forge package"
   },
   "keywords": [],
   "author": {

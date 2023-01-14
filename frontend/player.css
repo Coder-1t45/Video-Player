@@ -1,269 +1,268 @@
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background-color: black;
-    margin: auto;
-    color: whitesmoke;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: black;
+  margin: auto;
+  color: whitesmoke;
 }
-*{
-    user-select: none;
+* {
+  user-select: none;
 }
 
 *[tooltip]::after {
-    content: attr(tooltip);
-    opacity: 0;
-    font-size: 14px;
-    padding: 3px 6px;
-    color: white;
-    transition: opacity ease-out 0.1s;
-    user-select: none;
-    width: max-content;
-    height: max-content;
-    transform: translateY(-100%) translateX(-50%);
-    letter-spacing: normal;
-    z-index: 1200000000;
-    position: absolute;
-    top: -0.25rem;
-    left: 50%;
-    border-radius: 0.5vh;
-    background-color: black;
-    user-select: none;
-    visibility: hidden;
+  content: attr(tooltip);
+  opacity: 0;
+  font-size: 14px;
+  padding: 3px 6px;
+  color: white;
+  transition: opacity ease-out 0.1s;
+  user-select: none;
+  width: max-content;
+  height: max-content;
+  transform: translateY(-100%) translateX(-50%);
+  letter-spacing: normal;
+  z-index: 1200000000;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  border-radius: 0.5vh;
+  background-color: black;
+  user-select: none;
+  visibility: hidden;
 }
 
 *[tooltip]:hover::after {
-    visibility: visible;
-    opacity: 0.9;
+  visibility: visible;
+  opacity: 0.9;
 }
 
 *[tooltip][buttontip]::after {
-    content: attr(tooltip);
-    opacity: 0;
-    font-size: 14px;
-    padding: 3px 6px;
-    color: white;
-    transition: opacity ease-out 0.1s;
-    user-select: none;
-    width: max-content;
-    height: max-content;
-    transform: translateY(200%) translateX(-50%);
-    letter-spacing: normal;
-    z-index: 1200000000;
-    position: absolute;
-    top: -0.25rem;
-    left: 50%;
-    border-radius: 0.5vh;
-    background-color: black;
-    user-select: none;
-    visibility: hidden;
+  content: attr(tooltip);
+  opacity: 0;
+  font-size: 14px;
+  padding: 3px 6px;
+  color: white;
+  transition: opacity ease-out 0.1s;
+  user-select: none;
+  width: max-content;
+  height: max-content;
+  transform: translateY(200%) translateX(-50%);
+  letter-spacing: normal;
+  z-index: 1200000000;
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  border-radius: 0.5vh;
+  background-color: black;
+  user-select: none;
+  visibility: hidden;
 }
 
 *[tooltip][buttontip]:hover::after {
-    visibility: visible;
-    opacity: 0.9;
+  visibility: visible;
+  opacity: 0.9;
 }
 
 div.videobehind {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    display: contents;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  display: contents;
 }
 
 div.videobehind video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  display: block;
 }
 
 div.videobehind div.subt {
-    position: absolute;
-    width: 100%;
-    bottom: 10%;
-    display: flex;
-    padding: 0;
-    pointer-events: none;
+  position: absolute;
+  width: 100%;
+  bottom: 10%;
+  display: flex;
+  padding: 0;
+  pointer-events: none;
 }
 
 div.videobehind div.subt p#subtitlesElement {
-    width: fit-content;
-    position: relative;
-    display: block;
-    margin: 0;
-    font-size: 22px;
-    padding: 5px 40px;
-    background-color: rgba(0, 0, 0, 75%);
-    text-align: center;
-    cursor: grab;
-    user-select: none;
-    pointer-events: all;
+  width: fit-content;
+  position: relative;
+  display: block;
+  margin: 0;
+  font-size: 22px;
+  padding: 5px 40px;
+  background-color: rgba(0, 0, 0, 75%);
+  text-align: center;
+  cursor: grab;
+  user-select: none;
+  pointer-events: all;
 }
 
 main {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 main div.header {
-    align-items: flex-start;
-    display: flex;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px 30px;
+  align-items: flex-start;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 30px;
 }
 
 main div.header button {
-    margin-block: auto;
-    display: inline-block;
-    vertical-align: middle;
-    outline: none;
-    border: none;
-    background-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    color: white;
-    font-size: auto;
-    font-size: 30px;
-    transition: transform 0.3s ease-out;
-    padding: 4px 5px;
+  margin-block: auto;
+  display: inline-block;
+  vertical-align: middle;
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  color: white;
+  font-size: auto;
+  font-size: 30px;
+  transition: transform 0.3s ease-out;
+  padding: 4px 5px;
 }
 
 main div.header button:hover {
-    transform: scale(1.3);
-    transition: transform 0.1s ease-out;
+  transform: scale(1.3);
+  transition: transform 0.1s ease-out;
 }
 
 main div.header button:active {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 main div.header h1 {
-    font-size: inherit;
-    margin: 0;
-    padding: 0;
-    font-size: 30px;
-    font-weight: lighter;
-    display: block;
-    user-select: none;
-    margin-block: auto;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  font-weight: lighter;
+  display: block;
+  user-select: none;
+  margin-block: auto;
 }
 
 main div.header div.start {
-    justify-items: flex-start;
-    flex-grow: 1;
-    pointer-events: all;
-    display: block;
+  justify-items: flex-start;
+  flex-grow: 1;
+  pointer-events: all;
+  display: block;
 }
 
 main div.header div.end {
-    justify-items: flex-end;
+  justify-items: flex-end;
 }
 
-main div.header div.end button{
-    margin-block:auto;
+main div.header div.end button {
+  margin-block: auto;
 }
-main div.header div.end button#audioButton progress{
-    height:3px;
-    display:block;
-    width:40px;
+main div.header div.end button#audioButton progress {
+  height: 3px;
+  display: block;
+  width: 30px;
+  transform: translateX(3px);
 }
 
 main div.empty {
-    flex-grow: 1;
-    background-color: rgba(white, 30%);
+  flex-grow: 1;
+  background-color: rgba(white, 30%);
 }
 
 main div.controls {
-    box-sizing: border-box;
-    display: flex;
-    padding: 10px 30px;
-    width: 100%;
-    align-items: flex-end;
+  box-sizing: border-box;
+  display: flex;
+  padding: 10px 30px;
+  width: 100%;
+  align-items: flex-end;
 }
 
 main div.controls * {
-    margin-inline: 5px;
-    margin-block: auto;
+  margin-inline: 5px;
+  margin-block: auto;
 }
 
 main div.controls p[time] {
-    display: inline-block;
-    width: max-content;
-    margin-block: auto;
-    margin-inline: 10px;
+  display: inline-block;
+  width: max-content;
+  margin-block: auto;
+  margin-inline: 10px;
 }
 
 main div.controls div {
-    display: flex;
-    margin-inline: 25px;
+  display: flex;
+  margin-inline: 25px;
 }
 
 main div.controls div.start {
-    justify-items: flex-start;
+  justify-items: flex-start;
 }
 
 main div.controls input[type="range"] {
-    flex-grow: 1;
-    height: 1px;
-    width: 80%;
+  flex-grow: 1;
+  height: 1px;
+  width: 80%;
 }
 
 main div.controls div.end {
-    justify-items: flex-end;
+  justify-items: flex-end;
 }
 
 main div.controls * {
-    margin-block: auto;
+  margin-block: auto;
 }
 
 main div.controls button {
-    vertical-align: middle;
-    outline: none;
-    border: none;
-    background-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    color: white;
-    font-size: auto;
-    font-size: 30px;
-    transition: transform 0.3s ease-out;
-    padding: 4px 5px;
+  vertical-align: middle;
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  color: white;
+  font-size: auto;
+  font-size: 30px;
+  transition: transform 0.3s ease-out;
+  padding: 4px 5px;
 }
 
 main div.controls button:hover {
-    transform: scale(1.3);
-    transition: transform 0.1s ease-out;
+  transform: scale(1.3);
+  transition: transform 0.1s ease-out;
 }
 
 main div.controls button:active {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 main#main {
-    transition: opacity 0.7s ease-out;
+  transition: opacity 0.7s ease-out;
 }
 
 #playElement p {
-    width: 25px;
+  width: 25px;
 }
 
 /* handeling svg -> */
-button svg{
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(281deg) brightness(101%) contrast(104%);
-}
-svg path{
-    transform:scale(1.1);
+button svg {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(281deg)
+    brightness(101%) contrast(104%);
 }
 button#playElement p {
-    max-width:20px;
-    width:20px;
-    min-width:20px;
+  max-width: 20px;
+  width: 20px;
+  min-width: 20px;
 }
