@@ -39,13 +39,14 @@ const path = __importStar(require("path"));
 let _clear_data = {
     volume: 100,
     muted: false,
-    videos: []
+    videos: [],
 };
 const encoding = "binary";
 let _data;
 let _settings_location = "user_data.js";
-function loadSettings() {
+function loadSettings(_app_file) {
     return __awaiter(this, void 0, void 0, function* () {
+        _settings_location = path.join(_app_file, _settings_location);
         if (fs.existsSync(_settings_location)) {
             fs.openSync(_settings_location, "r");
             _data = JSON.parse((yield fs.readFileSync(_settings_location, encoding)));

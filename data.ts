@@ -24,7 +24,8 @@ const encoding: fs.WriteFileOptions = "binary";
 let _data: playerSettings;
 let _settings_location = "user_data.js";
 
-export async function loadSettings() {
+export async function loadSettings(_app_file:string) {
+    _settings_location = path.join(_app_file, _settings_location);
     if (fs.existsSync(_settings_location)) {
         fs.openSync(_settings_location, "r");
         _data = JSON.parse(

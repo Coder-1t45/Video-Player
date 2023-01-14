@@ -378,7 +378,8 @@ window.onload = function () {
     document.body.ondrop = (ev) => {
       ev.stopPropagation();
       ev.preventDefault();
-
+      videoElement.pause();
+      playElement.innerHTML = "<p>▷</<p>";
       const files = ev.dataTransfer.files;
       for (const file of files) {
         ipcRenderer.send("drop", file.path);

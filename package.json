@@ -1,7 +1,7 @@
 {
   "name": "videplayer",
   "productName": "Video Player",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "icon":"icon.ico",
   "description": "video player",
   "main": "electron.js",

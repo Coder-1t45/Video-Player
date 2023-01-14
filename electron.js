@@ -78,7 +78,7 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
             return { video: _path, subs: "", data: _d };
     });
     // Load our settings fule.
-    var { volume, muted } = yield data.loadSettings();
+    var { volume, muted } = yield data.loadSettings(electron_1.app.getAppPath());
     // Create the browser window.
     const mainWindow = new electron_1.BrowserWindow({
         minWidth: 800,
@@ -99,7 +99,8 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
     // mainWindow.webContents.openDevTools();
     // Send initial Locations and Details.
     electron_1.ipcMain.on("startup", (event, args) => __awaiter(void 0, void 0, void 0, function* () {
-        mainWindow.webContents.send("startup", Object.assign({ volume, muted }, yield gatherVideo()));
+        mainWindow.webContents.send("startup", Object.assign({ volume,
+            muted }, (yield gatherVideo())));
     }));
     electron_1.ipcMain.on("opensubtitles", (event, args) => __awaiter(void 0, void 0, void 0, function* () {
         var location = "";
@@ -157,7 +158,7 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
             time: args["current"],
         }, {
             volume: args["volume"],
-            muted: args["muted"]
+            muted: args["muted"],
         });
     });
     electron_1.app.on("window-all-closed", () => {

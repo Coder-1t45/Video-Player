@@ -46,7 +46,7 @@ const createWindow = async () => {
     } else return { video: _path, subs: "", data: _d };
   };
   // Load our settings fule.
-  var { volume, muted } = await data.loadSettings();
+  var { volume, muted } = await data.loadSettings(app.getAppPath());
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({

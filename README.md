@@ -53,6 +53,8 @@ simple Video Player created by me, Coder-1t45
 
 ## Screenshots
 
-![Alt text](https://cdn.discordapp.com/attachments/1005211638191890532/1063526582041444443/image.png)
+![Alt text](https://cdn.discordapp.com/attachments/1005211638191890532/1063858039238692944/image.png)
 
 ![Alt text](https://cdn.discordapp.com/attachments/1005211638191890532/1063527042232103072/image.png)
+
+![Alt text](https://cdn.discordapp.com/attachments/1005211638191890532/1063859411413643314/image.png)
