@@ -5,6 +5,8 @@ const { ipcRenderer } = require("electron");
 let videoElement;
 let progressElement;
 let emptyScreen;
+let videoPassing;
+let passingElement;
 
 let playElement;
 let forwardElement;
@@ -111,8 +113,31 @@ function continueOnLoad() {
 
   progressElement.onmousedown = () => {
     progressUpdateable = false;
+    if (passingElement) passingElement.setAttribute("changing","true");
   };
+  progressElement.onmouseenter = () => {
+    if (passingElement) passingElement.setAttribute("changing","true");
+  }
+  progressElement.onmouseover = progressElement.onmousemove = (e) => {
+    if (videoPassing && progressElement)
+    if (!progressUpdateable){
+      videoPassing.currentTime =
+        (parseInt(progressElement.value) * videoPassing?.duration) /
+        parseInt(progressElement.max);
+      return;
+    }
+    var x = e.pageX - progressElement.offsetLeft;
+    var startPos = progressElement.clientPosition;
+    console.log("startPos: " + startPos)
+    var xconvert =  x /progressElement.clientWidth;
+    if (videoPassing && xconvert != Infinity && x > 0)
+    videoPassing.currentTime = xconvert * videoPassing.duration;
+  }
+  progressElement.onmouseleave = () => {
+    if (passingElement) passingElement.setAttribute("changing","false");
+  }
   progressElement.onmouseup = () => {
+    if (passingElement) passingElement.setAttribute("changing","false");
     progressUpdateable = true;
     if (videoElement && progressElement) {
       videoElement.currentTime =
@@ -338,6 +363,8 @@ window.onload = function () {
     subtitlesButton = document.getElementById("subtitlesButton");
     playElement = document.getElementById("playElement");
     subtitlesElement = document.getElementById("subtitlesElement");
+    videoPassing = document.getElementById("videoPassing");
+    passingElement = document.getElementById("passingElement");
     // volume loading
     console.log(args["volume"] / 100);
     videoElement.volume = args["volume"] / 100;
@@ -386,7 +413,7 @@ window.onload = function () {
       }
     };
     ipcRenderer.on("vid", (ev, args) => {
-      videoElement.src = args["video"];
+      videoPassing.src = videoElement.src = args["video"];
       var l = args["video"].replaceAll("\\", "/").split("/");
 
       document.getElementById("titleElement").innerHTML = l[l.length - 1];
@@ -407,7 +434,7 @@ window.onload = function () {
       checkFlag();
       return;
     }
-    videoElement.src = args["video"];
+    videoPassing.src = videoElement.src = args["video"];
     var l = args["video"].replaceAll("\\", "/").split("/");
 
     document.getElementById("titleElement").innerHTML = l[l.length - 1];

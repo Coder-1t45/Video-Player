@@ -10,7 +10,7 @@ simple Video Player created by me, Coder-1t45
 - can disable subtitles with thesubtitle button.
 - the app will remember the user last location on the video and the subtitle direction which can be switched when right clicking the subtitles.
 - the app will remember the last time user's volume and mute state.
-
+- while passing trough the video with the progress bar, a tiny window will show the video current frame to the player [like in screenshot 4].
 ## Keybinds:
 
 - I / F12: Open DevTools
@@ -58,3 +58,5 @@ simple Video Player created by me, Coder-1t45
 ![Alt text](https://cdn.discordapp.com/attachments/1005211638191890532/1063527042232103072/image.png)
 
 ![Alt text](https://cdn.discordapp.com/attachments/1005211638191890532/1063859411413643314/image.png)
+
+![Alt text](https://cdn.discordapp.com/attachments/1005211638191890532/1067576315907154031/image.png)
