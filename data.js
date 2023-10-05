@@ -22,15 +22,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.exitSoftware = exports.enterVideo = exports.updateVideo = exports.loadSettings = void 0;
 const fs = __importStar(require("fs"));
@@ -44,19 +35,17 @@ let _clear_data = {
 const encoding = "binary";
 let _data;
 let _settings_location = "user_data.js";
-function loadSettings(_app_file) {
-    return __awaiter(this, void 0, void 0, function* () {
-        _settings_location = path.join(_app_file, _settings_location);
-        if (fs.existsSync(_settings_location)) {
-            fs.openSync(_settings_location, "r");
-            _data = JSON.parse((yield fs.readFileSync(_settings_location, encoding)));
-        }
-        else {
-            _data = JSON.parse(JSON.stringify(_clear_data));
-            fs.appendFileSync(_settings_location, JSON.stringify(_data), encoding);
-        }
-        return { volume: _data.volume, muted: _data.muted };
-    });
+async function loadSettings(_app_file) {
+    _settings_location = path.join(_app_file, _settings_location);
+    if (fs.existsSync(_settings_location)) {
+        fs.openSync(_settings_location, "r");
+        _data = JSON.parse((await fs.readFileSync(_settings_location, encoding)));
+    }
+    else {
+        _data = JSON.parse(JSON.stringify(_clear_data));
+        fs.appendFileSync(_settings_location, JSON.stringify(_data), encoding);
+    }
+    return { volume: _data.volume, muted: _data.muted };
 }
 exports.loadSettings = loadSettings;
 function updateVideo(video, args) {
@@ -89,10 +78,8 @@ function enterVideo(video_path) {
     return null;
 }
 exports.enterVideo = enterVideo;
-function exitSoftware() {
-    return __awaiter(this, void 0, void 0, function* () {
-        fs.openSync(_settings_location, "w");
-        yield fs.writeFileSync(_settings_location, JSON.stringify(_data), encoding);
-    });
+async function exitSoftware() {
+    fs.openSync(_settings_location, "w");
+    await fs.writeFileSync(_settings_location, JSON.stringify(_data), encoding);
 }
 exports.exitSoftware = exitSoftware;

@@ -22,15 +22,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const path = __importStar(require("path"));
@@ -41,8 +32,8 @@ if (require("electron-squirrel-startup")) {
     // eslint-disable-line global-require
     electron_1.app.quit();
 }
-const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
-    const gatherVideo = () => __awaiter(void 0, void 0, void 0, function* () {
+const createWindow = async () => {
+    const gatherVideo = async () => {
         var _path = "";
         if (process.argv0.endsWith("node.exe") ||
             process.argv0.endsWith("electron.exe")) {
@@ -56,7 +47,7 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
         var _subs = _path.slice(0, _path.length - ".mp4".length) + ".srt";
         var _d = data.enterVideo(_path);
         if (_d && _d.time > 0) {
-            var r = yield electron_1.dialog.showMessageBoxSync(mainWindow, {
+            var r = await electron_1.dialog.showMessageBoxSync(mainWindow, {
                 type: "question",
                 title: "Confirmation",
                 message: "Are you want to continue from \nthe place you stopped last time?",
@@ -70,15 +61,15 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
             fs.openSync(_subs, "r");
             return {
                 video: _path,
-                subs: yield fs.readFileSync(_subs, "utf8"),
+                subs: await fs.readFileSync(_subs, "utf8"),
                 data: _d,
             };
         }
         else
             return { video: _path, subs: "", data: _d };
-    });
+    };
     // Load our settings fule.
-    var { volume, muted } = yield data.loadSettings(electron_1.app.getAppPath());
+    var { volume, muted } = await data.loadSettings(electron_1.app.getAppPath());
     // Create the browser window.
     const mainWindow = new electron_1.BrowserWindow({
         minWidth: 800,
@@ -98,13 +89,16 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();
     // Send initial Locations and Details.
-    electron_1.ipcMain.on("startup", (event, args) => __awaiter(void 0, void 0, void 0, function* () {
-        mainWindow.webContents.send("startup", Object.assign({ volume,
-            muted }, (yield gatherVideo())));
-    }));
-    electron_1.ipcMain.on("opensubtitles", (event, args) => __awaiter(void 0, void 0, void 0, function* () {
+    electron_1.ipcMain.on("startup", async (event, args) => {
+        mainWindow.webContents.send("startup", {
+            volume,
+            muted,
+            ...(await gatherVideo()),
+        });
+    });
+    electron_1.ipcMain.on("opensubtitles", async (event, args) => {
         var location = "";
-        yield electron_1.dialog
+        await electron_1.dialog
             .showOpenDialog({
             defaultPath: electron_1.app.getPath("documents"),
             title: "Select the Subtitles",
@@ -123,17 +117,17 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
             }
         });
         fs.openSync(location, "r");
-        var _data = yield fs.readFileSync(location, "utf8");
+        var _data = await fs.readFileSync(location, "utf8");
         mainWindow.webContents.send("subs", { subs: _data });
-    }));
+    });
     electron_1.ipcMain.on("i", (event, args) => {
         mainWindow.webContents.openDevTools();
     });
-    electron_1.ipcMain.on("drop", (event, args) => __awaiter(void 0, void 0, void 0, function* () {
+    electron_1.ipcMain.on("drop", async (event, args) => {
         if (args.endsWith(".mp4")) {
             var _d = data.enterVideo(args);
             if (_d && _d.time > 0) {
-                var r = yield electron_1.dialog.showMessageBoxSync(mainWindow, {
+                var r = await electron_1.dialog.showMessageBoxSync(mainWindow, {
                     type: "question",
                     title: "Confirmation",
                     message: "Are you want to continue from \nthe place you stopped last time?",
@@ -147,10 +141,10 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
         }
         else if (args.endsWith(".srt")) {
             fs.openSync(args, "r");
-            var _data = yield fs.readFileSync(args, "utf8");
+            var _data = await fs.readFileSync(args, "utf8");
             mainWindow.webContents.send("subs", { subs: _data });
         }
-    }));
+    });
     electron_1.ipcMain.on("updatevid", (event, args) => {
         data.updateVideo({
             path: args["src"],
@@ -167,7 +161,7 @@ const createWindow = () => __awaiter(void 0, void 0, void 0, function* () {
             electron_1.app.quit();
         }
     });
-});
+};
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.

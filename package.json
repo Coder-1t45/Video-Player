@@ -2,7 +2,7 @@
   "name": "videplayer",
   "productName": "Video Player",
   "version": "1.0.6",
-  "icon":"icon.ico",
+  "icon": "icon.ico",
   "description": "video player",
   "main": "electron.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon":"icon.ico"
+        "icon": "icon.ico"
       },
       "makers": [
         {
@@ -54,19 +54,19 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
-    "electron": "22.0.1",
-    "electron-builder": "^23.6.0"
+    "electron": "^22.3.26",
+    "electron-builder": "^24.6.4"
   },
-  "build":{
+  "build": {
     "appId": "com.1t45.videplayer",
-    "productName":"Video Player",
-    "target":"NSIS",
-    "directory":{
-      "output":"build"
+    "productName": "Video Player",
+    "target": "NSIS",
+    "directory": {
+      "output": "build"
     },
-    "nsis":{
+    "nsis": {
       "allowToChangeInstallationDirectory": true,
-      "oneClick":false
+      "oneClick": false
     }
   }
 }
